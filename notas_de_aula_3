@@ -65,7 +65,7 @@ $ ./ponteiro
 To show the number of memory address in int must use %d, therefore printf only show the number contained in the first 4 bytes.
 %p show memory address in HEX
 
-por exemplo &px = 0x7ffe4c92e0b0
+for example &px = 0x7ffe4c92e0b0
             &x = 0x7ffe4c92e0a8
             &y = 0x7ffe4c92e0ac
 
