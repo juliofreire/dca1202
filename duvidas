@@ -1,0 +1,2 @@
+* Na alocação de memória de uma matriz bidimensional, porque apenas liberar o espaço do ponteiro z[0] é suficiente? 
+Sugestão: Fazer na mão o esquema de alocação de memórias para entender melhor o processo.
