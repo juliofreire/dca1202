@@ -1,0 +1,95 @@
+Aula 3 - 26/06 - Sexta-Feira
+
+*Ler sobre printf
+*Ler sobre scanf
+----------
+|STACK(+-)|  Byte mais significativo (Endereço de mempória maior)
+----------
+|   -    |  Stack -> Pilha estacada de baixo pra cima (ou por baixo)
+----------
+|   +    | 
+----------
+|   +    | 
+----------
+|   -    |
+----------
+|HEAP(-+)| Heap -> Pilha estacada de cima para baixo (ou por cima)
+----------
+|  DATA  | 
+----------
+|  TEXT  | Byte menos significativo (Endereço de memória menor)
+----------
+
+*Um inteiro ocupa 4 bytes
+*Um char ocupa 1 byte
+*Um double ocupa 8 bytes
+
+A declaração do ponteiro utiliza o tipo na sua frente para que possa saber exatamente a quantidade de bytes que ele irá "saltar" a cada incremento, seguindo o exemplo:
+Ex1:
+int *px
+px++
+px antes do incremento é 4 bytes menor que após o incremento
+Ex2:
+char *px
+px++
+px antes do incremento é 1 byte menor que após o incremento
+
+declarações equivalentes de ponteiro
+int *px, x == int* px, x // Na segunda declaração o * funciona apenas para o primeiro termo.
+
+&x : endereço de x
+*px: conteúdo de px
+
+Se px = &x, então px receberá o endereço B
+Logo, *px será o conteúdo no endereço B
+----------
+|   B    | px, endereço de px A
+----------
+|   2    | x, endereço de x B
+----------
+|        | y, endereço de y C
+----------
+|        |
+----------
+|        |
+----------
+|        |
+----------
+
+$ gcc ponteiro.c -o ponteiro (.exe) // comando para execução do programa, a utilização do (.exe) é apenas para máquinas windows
+$ ./ponteiro
+
+> Seguir os slides para ver o exemplos da utilização de *px e px, para mostrar valores e os endereços de memória armazenados no ponteiro px
+
+**Read more about the documentation of printf to learn %d, %p and others value formats
+To show the number of memory address in int must use %d, therefore printf only show the number contained in the first 4 bytes.
+%p show memory address in HEX
+
+por exemplo &px = 0x7ffe4c92e0b0
+            &x = 0x7ffe4c92e0a8
+            &y = 0x7ffe4c92e0ac
+
+the address contained y is ad, ae, af, b0, stay aware that y begins in ac, but ac is exclusive, indeed the start of memory is AD!!
+the same happens to the consecutives variables
+x -> a9,aa,ab,ac
+px -> b1,b2,b3,b4
+
+
+
+
+
+
+Exemplo de memória:
+----------
+|        |
+----------
+|        |
+----------
+|        |
+----------
+|        |
+----------
+|        |
+----------
+|        |
+----------
