@@ -1,0 +1,4 @@
+p = mat + 1 => OK
+p = mat++ => nao OK
+p = ++mat =>  nao OK
+x = (*mat)++ => nao OK

@@ -1,0 +1,11 @@
+Questão 01)
+
+Esquema i=3, j=5
+p = endereço de i
+q = endereço de j
+
+R: 
+* 1
+* -2
+* 3
+* 10

@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void ordena(int n, float *vet){
+    int i=0;
+    int j=0;
+    for(;i<n;i++){
+        for(j=i+1;j<n;j++){
+            float aux = vet[i];
+            if (vet[j] < aux){
+                vet[i] = vet[j];
+                vet[j] = aux;
+            }
+        }
+    }
+}
+
+
+
+int main()
+{
+    printf("Choose how many values do you want to put in crescent order\n");
+    int n;
+    scanf("%d", &n);
+
+    float *po;
+    po = (float*) malloc(n*sizeof(float));
+
+    printf("Now, put one by one value of the sequence\n");
+    int i;
+
+    for(i=0;i<n;i++){
+        scanf("%f", &po[i]);
+    }
+//    for(i=0;i<n;i++){
+//        po[i]=rand()%1000;
+//    }
+
+//    clock_t start_time = clock();
+    ordena(n,po);
+//    double elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+//    printf("Done in %f seconds\n", elapsed_time);
+
+    printf("The crescent order is the next one: ");
+    for(i=0;i<n;i++){
+        printf("%f\n", po[i]);
+    }
+    free(po);
+    return 0;
+}

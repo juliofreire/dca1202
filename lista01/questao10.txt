@@ -1,0 +1,5 @@
+int qdez[4];
+
+for (i=0; i<4; i++){
+	printf("address: %p ", qdez+i);
+}

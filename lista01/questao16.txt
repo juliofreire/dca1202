@@ -1,0 +1,106 @@
+Fazendo o benchmark para cada uma das questões 13, 14 e 15, sendo 60k a quantidade de elementos que devem ser ordenados, o método utilizado na questão 13
+demorava em torno de 5 segundos e o da questão 15 em torno de 9 segundos, para a questão 14 o tempo era 0.00000, em double. O que levantou uma curiosidade
+de que a função qsort() estava fazendo o ordenamento de forma instantânea, para isso fiz a pesquisa sobre essa função e vi que ela é capaz de ordenar 1kk de
+elementos em menos de 1 segundo (também fiz o teste na minha máquina, comprovando esse absurdo!).
+
+https://travisdowns.github.io/blog/2019/05/22/sorting.html
+
+-------CODE-START------
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+// function implemented in q13
+void ordena(int n, float *vet){
+    int i=0;
+    int j=0;
+    for(;i<n;i++){
+        for(j=i+1;j<n;j++){
+            float aux = vet[i];
+            if (vet[j] < aux){
+                vet[i] = vet[j];
+                vet[j] = aux;
+            }
+        }
+    }
+}
+
+// function to use qsort
+int compare (const void * a, const void * b){
+    return ( *(int*)a - *(int*)b );
+}
+
+// function implemented in q14
+void qsortJulio(float *vet, int n, int (*f)(float, float)){
+
+    int i=0;
+    int j=0;
+    for(;i<n;i++){
+        for(j=i+1;j<n;j++){
+            float aux = vet[i];
+            if (f(vet[i],vet[j]) > 0){
+                vet[i] = vet[j];
+                vet[j] = aux;
+            }
+        }
+    }
+
+}
+
+int cresc(float a, float b){
+  return (a - b);
+}
+
+// ===FUNCTION MAIN===
+
+int main()
+{
+    int n = 60000;
+    int i = 0;
+
+    float *po;
+    po = (float*) malloc(n*sizeof(float));
+
+    for(i=0;i<n;i++){
+        po[i]=rand()%1000;
+    }
+
+    // q13
+    clock_t start_time = clock();
+    ordena(n, po);
+    double elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+    printf("Done in %f seconds\n", elapsed_time);
+
+    for(i=0;i<n;i++){
+        po[i]=rand()%1000;
+    }
+
+    // q14
+    start_time = clock();
+
+    qsort (po, n, sizeof(int), compare);
+
+    elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+    printf("Done in %f seconds\n", elapsed_time);
+
+
+    for(i=0;i<n;i++){
+        po[i]=rand()%1000;
+    }
+
+    //q15
+    start_time = clock();
+
+    qsortJulio (po, n,  cresc);
+
+    elapsed_time = (double)(clock() - start_time) / CLOCKS_PER_SEC;
+    printf("Done in %f seconds\n", elapsed_time);
+
+    free(po);
+
+
+
+    printf("Hello World!\n");
+    return 0;
+}
+-------CODE-END--------

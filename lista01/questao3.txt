@@ -1,0 +1,8 @@
+p = i => False
+q = &j => True
+p = &*&i => True
+i = (*&)j => False
+i = *&j =>  True
+i = *&*&j => True
+q = *p => False
+i = (*p)++ + *q => True

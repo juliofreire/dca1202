@@ -1,0 +1,8 @@
+aloha[2]=values ====> ok
+scanf("%f", &aloha); ====> ok
+aloha = value; ====> nao ok
+printf("%f", aloha) ====> nao ok 
+coisas[4][4] = aloha[3] ====> ok
+coisas[5] = aloha; ====> nao ok
+pf = value; ====> nao ok --- value retorna o valor contido em value, lembrando que pf é um ponteiro
+pf = aloha; ====> ok --- aqui aloha retorna o endereço de onde começa o vetor aloha

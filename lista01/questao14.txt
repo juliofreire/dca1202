@@ -1,0 +1,39 @@
+/* qsort example */
+#include <stdio.h>      /* printf */
+#include <stdlib.h>     /* qsort */
+
+//int values[] = { 40, 10, 100, 90, 20, 25 };
+// create a generic function that obey the exigence to compare two variables
+// <0 p1 goes before p2
+// == 0 p1 and p2 are equivalent
+// >0 p1 goes after p2
+int compare (const void * a, const void * b)
+{
+    return ( *(int*)a - *(int*)b );
+}
+
+int main ()
+{
+    printf("Choose how many values do you want to put in crescent order\n");
+    int n;
+    scanf("%d", &n);
+// dinamic address allocation
+    float *po;
+    po = (float*) malloc(n*sizeof(float));
+
+    printf("Now, put one by one value of the sequence\n");
+    int i;
+// receiving the input
+    for(i=0;i<n;i++){
+        scanf("%f", &po[i]);
+    }
+// calling the qsort function with all arguments
+    qsort (po, n, sizeof(int), compare);
+    for (i=0; i<n; i++){
+        printf ("%f\n ",po[i]);
+    }
+// free the alocated space in malloc
+    free(po);
+
+    return 0;
+}

@@ -1,0 +1,2 @@
+a) percorre o vetor vet imprimindo seus elementos no formato decimal, 4, 9, 13
+b) percorre o vetor vet imprimindo seus elementos no formado hexadecimal 4, 9, D

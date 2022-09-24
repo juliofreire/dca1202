@@ -1,0 +1,82 @@
+Ponteiro para função apontam para o endereço de início de uma função, que é um endereço que armazena a chamada da função para qual eles está apontando.
+Assim, o ponteiro pode receber uma função sem a necessidade de utilizar o operador & que retorna o endereço de uma variável (ou no caso função), bem como
+suprimeiro a necessidade do operador * para retornar o valor armazenado no endereço do ponteiro.
+
+-------CODE-START------
+void fun(int a)
+{
+    printf("Value of a is %d\n", a);
+}
+  
+int main()
+{ 
+    void (*fun_ptr)(int) = fun;  // & removed
+  
+    fun_ptr(10);  // * removed
+  
+    return 0;
+}
+-------CODE-END--------
+
+Duas utilizações para esse tipo de ponteiro são a de multiplas escolhas de uma operação, criando um array de ponteiros para função, onde cada elemento do
+array é um ponteiro para função que realiza uma operação diferente.
+
+-------CODE-START------
+#include <stdio.h>
+void add(int a, int b)
+{
+    printf("Addition is %d\n", a+b);
+}
+void subtract(int a, int b)
+{
+    printf("Subtraction is %d\n", a-b);
+}
+void multiply(int a, int b)
+{
+    printf("Multiplication is %d\n", a*b);
+}
+  
+int main()
+{
+    // fun_ptr_arr is an array of function pointers
+    void (*fun_ptr_arr[])(int, int) = {add, subtract, multiply};
+    unsigned int ch, a = 15, b = 10;
+  
+    printf("Enter Choice: 0 for add, 1 for subtract and 2 "
+            "for multiply\n");
+    scanf("%d", &ch);
+  
+    if (ch > 2) return 0;
+  
+    (*fun_ptr_arr[ch])(a, b);
+  
+    return 0;
+}
+-------CODE-END--------
+
+E a segunda operação é a generalização de uma operação, no qual se baseia em uma ideia de uma funçÃo principal que vai realizar uma determinada operação,
+porém um de seus argumentos é um ponteiro para uma função secundária que especifica como será feita a operação dentro do escopo da função principal. A exemplo da funçao
+qsort() do stdlib.h que move os elementos para esquerda caso a função secundária retorne valores negativos, move-os para a direita caso sejam positivos e não
+faz nada caso seja igual a 0.
+
+-------CODE-START------
+#include <stdio.h>
+#include <stdlib.h>
+  
+int compare (const void * a, const void * b)
+{
+  return ( *(int*)a - *(int*)b );
+}
+  
+int main ()
+{
+  int arr[] = {10, 5, 15, 12, 90, 80};
+  int n = sizeof(arr)/sizeof(arr[0]), i;
+  
+  qsort (arr, n, sizeof(int), compare);
+  
+  for (i=0; i<n; i++)
+     printf ("%d ", arr[i]);
+  return 0;
+}
+-------CODE-END--------
