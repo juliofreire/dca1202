@@ -1,0 +1,11 @@
+Sobrecarga de operadores
+
+operadores unários
+++
+
+operadores binários
++ - / * << >> 
+
+operadores ternários
+
+?: exemplo (a<b)? 3:5, como se lê, se a < b, retorne 3, se não retorne 5
